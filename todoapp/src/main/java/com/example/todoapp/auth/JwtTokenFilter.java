@@ -50,7 +50,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 }
             }
         } catch (Exception ex) {
-            // Token doğrulama istisnasını yönetin
+            //
         }
         filterChain.doFilter(request, response);
     }

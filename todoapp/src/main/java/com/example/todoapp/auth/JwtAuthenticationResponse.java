@@ -12,6 +12,6 @@ public class JwtAuthenticationResponse {
         return token;
     }
 
-    // Setter metodu ekleyebilirsiniz, gerekiyorsa
+
 }
 
