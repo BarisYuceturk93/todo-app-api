@@ -36,7 +36,10 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("api/auth/login").permitAll()
-                        .requestMatchers("/users").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/users").permitAll()
+                        .requestMatchers("/tasks").hasAuthority("USER_ADMIN")
+                        .requestMatchers("/graphql").hasAuthority("ROLE_USER")
+                        .requestMatchers("/api/auth/register").permitAll()
                         .anyRequest()
                         .authenticated()
                 )

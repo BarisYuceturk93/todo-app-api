@@ -1,5 +1,9 @@
 package com.example.todoapp.auth;
 
+import com.example.todoapp.UserData.UserData;
+import com.example.todoapp.UserData.UserRegistrationDto;
+import com.example.todoapp.UserData.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,14 +20,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final UserService userService;
 
-    public AuthController(AuthenticationManagerBuilder authenticationManagerBuilder, JwtTokenProvider tokenProvider) {
+    public AuthController(AuthenticationManagerBuilder authenticationManagerBuilder, UserService userService, JwtTokenProvider tokenProvider) {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
+        this.userService = userService;
         this.tokenProvider = tokenProvider;
     }
 
 
     private final JwtTokenProvider tokenProvider;
+
+    @PostMapping("/register")
+        public ResponseEntity<UserData> createUser(@RequestBody UserRegistrationDto registrationDto) {
+        UserData createdUser = userService.createUser(registrationDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    }
+
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
