@@ -57,13 +57,15 @@ gibi aracılarla kullanmak uygun olacaktır.
 Uygulamanın kullanımında,
 
 AuthController içerisindeki endpointlerden kullanıcı kaydı yapmanız ya da databasede kayıtlı bulunan bir kullanıcı girişi 
-yapmanız mümkün olacaktır. Bu endpointler SecurityConfig sınıfında tüm kullanıcılara açık bırakılmıştır. 
+yapmanız mümkün olacaktır. Bu endpointler SecurityConfig sınıfında tüm kullanıcılara açık bırakılmıştır. Bunun yanında parola
+unutulması anında kullanıcı adı ve email ile kullanıcı bilgilerini isteyen endpoint de açık bırakılmıştır. 
 Kullanıcı kaydının peşine kullanıcı girişi yapmak diğer endpointlere erişimi mümkün kılacaktır. 
-Bu işlem sonrasında generate edilen token GraphQL, UserController veya WorkItemController uzantılarında bulunan 
+Bu işlem sonrasında generate edilen token AuthController, UserController veya WorkItemController uzantılarında bulunan 
 endpointlere Bearer <token> yöntemiyle gönderildiği takdirde endpointlerde bulunan işlemler gerçekleştirilebilir olacaktır.
 
 Bu işlemler arasında yeni kullanıcı eklemek(UserController), kullanıcıları listelemek(UserController),
 görev oluşturmak(WorkItemController), görevi üstlenmek(UserController), görevi sonlandırmak(WorkItemController) ve 
-silmek mümküdür(WorkItemController). Bunun yanı sıra kullanıcılar kendi kullanıcı adları ile kendilerine bağlanan 
-görevleri görebileceklerdir. Tüm Controller sınıflarında basic CRUD işlemleri mevcuttur.
+silmek (WorkItemController), bir kullanıcıya rol/yetki atamak(AuthController) vardır. Bunun yanı sıra kullanıcılar kendi kullanıcı adları ile kendilerine bağlanan 
+görevleri görebileceklerdir(UserController). Tüm Controller sınıflarında ek olarak temel CRUD işlemleri yapan endpointler mevcuttur. Bazı sorgular için
+ilgili repository sınıflarında query'ler yazılmıştır. 
 
