@@ -22,4 +22,6 @@ public interface UserRepository extends JpaRepository<UserData, Long> {
     List<WorkItem> getUsersTasks(String username);
 
     UserData findUserById(Long id);
+
+    UserData findUserByUsernameAndEmail(String username, String email);
 }

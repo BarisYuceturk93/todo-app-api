@@ -37,9 +37,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("api/auth/login").permitAll()
                         .requestMatchers("/users").permitAll()
-                        .requestMatchers("/tasks").hasAuthority("USER_ADMIN")
+                        .requestMatchers("/tasks").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/graphql").hasAuthority("ROLE_USER")
                         .requestMatchers("/api/auth/register").permitAll()
+                        .requestMatchers("/api/auth/forgottenpassword").permitAll()
+                        .requestMatchers("/api/auth/setrole").hasAuthority("ROLE_ADMIN")
                         .anyRequest()
                         .authenticated()
                 )
