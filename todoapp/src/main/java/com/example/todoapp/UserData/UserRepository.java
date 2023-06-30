@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserData, Long> {
@@ -24,4 +25,7 @@ public interface UserRepository extends JpaRepository<UserData, Long> {
     UserData findUserById(Long id);
 
     UserData findUserByUsernameAndEmail(String username, String email);
+
+    @Query("SELECT u.roles FROM UserData u WHERE u.username=?1")
+    Set<String> getRoles(String username);
 }

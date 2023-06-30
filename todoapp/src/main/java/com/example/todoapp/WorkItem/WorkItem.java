@@ -25,7 +25,7 @@ public class WorkItem {
     private String createDate;
 
     @JsonBackReference
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<UserData> userlist;
 
     public Long getId() {
@@ -119,7 +119,6 @@ public class WorkItem {
                 ", isCompleted=" + isCompleted +
                 ", updateDate='" + updateDate + '\'' +
                 ", createDate='" + createDate + '\'' +
-                ", userlist=" + userlist +
                 '}';
     }
 

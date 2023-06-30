@@ -38,6 +38,7 @@ public class UserService {
         user = UserMapper.INSTANCE.fromUserRegisterationDtoToUser(registrationDto);
 
         String password = passwordEncoder.encode(registrationDto.getPassword());
+        user.setPassword(password);
         return userRepository.save(user);
     }
 

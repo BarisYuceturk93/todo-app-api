@@ -28,7 +28,7 @@ public class UserData {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<WorkItem> workItemList;
 
     public long getId() {
@@ -131,8 +131,6 @@ public class UserData {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", roles=" + roles +
-                ", workItemList=" + workItemList +
                 '}';
     }
 }
